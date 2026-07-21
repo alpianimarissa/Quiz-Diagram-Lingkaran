@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Diagram Lingkaran SD Kelas 4</title>
+
+<!-- Google Fonts & KaTeX for Math Rendering -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+<style>
+:root {
+  --bg-main: #f0fdf4;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #cbd5e1;
+  --radius: 20px;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 12px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+header {
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  color: white;
+  padding: 24px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+header h1 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+header p {
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.controls-bar {
+  background: var(--card);
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: var(--shadow);
+}
+
+.badge-info {
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.progress-container {
+  flex: 1;
+  min-width: 180px;
+  background: #e2e8f0;
+  height: 14px;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.mode-selector select {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--text);
+  outline: none;
+  background: white;
+  cursor: pointer;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed #e2e8f0;
+}
+
+.q-number {
+  font-family: 'Baloo 2', cursive;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.q-tag {
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.question-text {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0 24px 0;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.options-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.option-btn {
+  background: #f8fafc;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  text-align: left;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.option-btn:hover:not([disabled]) {
+  border-color: var(--primary);
+  background: #e0e7ff;
+}
+
+.option-prefix {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 16px;
+  color: #334155;
+  flex-shrink: 0;
+}
+
+.option-btn.selected {
+  border-color: var(--primary);
+  background: #e0e7ff;
+}
+
+.option-btn.correct {
+  background: #d1fae5 !important;
+  border-color: var(--success) !important;
+  color: #065f46 !important;
+}
+
+.option-btn.correct .option-prefix {
+  background: var(--success);
+  color: white;
+}
+
+.option-btn.wrong {
+  background: #fee2e2 !important;
+  border-color: var(--danger) !important;
+  color: #991b1b !important;
+}
+
+.option-btn.wrong .option-prefix {
+  background: var(--danger);
+  color: white;
+}
+
+.explanation-box {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: #eff6ff;
+  border-left: 6px solid var(--primary);
+  font-size: 15px;
+  line-height: 1.6;
+  display: none;
+}
+
+.explanation-box h4 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 18px;
+  color: var(--primary);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  font-family: 'Baloo 2', cursive;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 12px 26px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-secondary { background: #e2e8f0; color: var(--text); }
+.btn-secondary:hover { background: #cbd5e1; }
+.btn-success { background: var(--success); color: white; }
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.result-card {
+  text-align: center;
+  padding: 40px 24px;
+  display: none;
+}
+
+.score-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  box-shadow: var(--shadow);
+}
+
+.score-val {
+  font-family: 'Baloo 2', cursive;
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.score-lbl {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.stat-item {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.stat-item .num {
+  font-family: 'Baloo 2', cursive;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.stat-item .label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+  header h1 { font-size: 22px; }
+  .card { padding: 18px; }
+  .question-text { font-size: 16px; }
+  .option-btn { font-size: 15px; padding: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>📊 Quiz Diagram Lingkaran SD Kelas 4</h1>
+    <p>Latihan Soal Matematika Dasar (Persen % dan Derajat °) — 25 Soal</p>
+  </header>
+
+  <div class="controls-bar" id="controlsBar">
+    <div class="badge-info" id="qCounter">Soal 1 / 25</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="mode-selector">
+      <select id="modeSelect" onchange="changeMode()">
+        <option value="practice">Mode Latihan (Pembahasan Langsung)</option>
+        <option value="exam">Mode Ujian (Pembahasan di Akhir)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Quiz Screen -->
+  <div class="card" id="quizCard">
+    <div class="question-header">
+      <span class="q-number" id="questionNumber">Soal 1</span>
+      <span class="q-tag" id="questionCategory">Konsep Dasar</span>
+    </div>
+
+    <div class="question-text" id="questionText"></div>
+
+    <div class="chart-container" id="chartContainer"></div>
+
+    <div class="options-grid" id="optionsGrid"></div>
+
+    <div class="explanation-box" id="explanationBox">
+      <h4>💡 Pembahasan Ringkas:</h4>
+      <div id="explanationContent"></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" id="btnPrev" onclick="prevQuestion()" disabled>◀ Sebelumnya</button>
+      <button class="btn btn-primary" id="btnNext" onclick="nextQuestion()">Selanjutnya ▶</button>
+    </div>
+  </div>
+
+  <!-- Result Screen -->
+  <div class="card result-card" id="resultCard">
+    <div class="score-circle">
+      <span class="score-val" id="finalScore">0</span>
+      <span class="score-lbl">Nilai Kamu</span>
+    </div>
+    <h2 id="resultTitle" style="font-family:'Baloo 2'; font-size:26px; margin-bottom:8px;">Hasil Ujian Kamu</h2>
+    <p id="resultMsg" style="color:var(--text-muted); font-size:15px; font-weight:600; margin-bottom:20px;"></p>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="num" style="color:var(--success);" id="correctCount">0</div>
+        <div class="label">Benar</div>
+      </div>
+      <div class="stat-item">
+        <div class="num" style="color:var(--danger);" id="wrongCount">0</div>
+        <div class="label">Salah</div>
+      </div>
+      <div class="stat-item">
+        <div class="num" style="color:var(--primary);" id="accuracyPct">0%</div>
+        <div class="label">Akurasi</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+      <button class="btn btn-primary" onclick="restartQuiz()">🔄 Ulangi Lagi</button>
+      <button class="btn btn-success" onclick="reviewQuiz()">📝 Lihat Pembahasan Soal</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function polarToCartesian(cx, cy, r, angleDeg) {
+  const a = (angleDeg - 90) * Math.PI / 180;
+  return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+}
+
+function arcPath(cx, cy, r, startAngle, endAngle) {
+  if (endAngle - startAngle >= 359.99) endAngle = startAngle + 359.99;
+  const start = polarToCartesian(cx, cy, r, startAngle);
+  const end = polarToCartesian(cx, cy, r, endAngle);
+  const largeArc = (endAngle - startAngle) > 180 ? 1 : 0;
+  return `M ${cx} ${cy} L ${start.x.toFixed(2)} ${start.y.toFixed(2)} A ${r} ${r} 0 ${largeArc} 1 ${end.x.toFixed(2)} ${end.y.toFixed(2)} Z`;
+}
+
+function createPieChartSVG(segments, size = 220, isDegree = false) {
+  const cx = size / 2, cy = size / 2, r = size * 0.38;
+  const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+  let angle = 0;
+  let paths = '', labels = '';
+
+  segments.forEach((s, idx) => {
+    let sweep = isDegree ? s.val : (s.val / 100) * 360;
+    const color = colors[idx % colors.length];
+    
+    paths += `<path d="${arcPath(cx, cy, r, angle, angle + sweep)}" fill="${color}" stroke="#ffffff" stroke-width="2" />`;
+    
+    const mid = angle + sweep / 2;
+    const lp = polarToCartesian(cx, cy, r * 0.6, mid);
+    
+    labels += `<text x="${lp.x}" y="${lp.y - 4}" text-anchor="middle" font-family="Baloo 2, cursive" font-size="12" font-weight="800" fill="#ffffff">${s.label}</text>`;
+    labels += `<text x="${lp.x}" y="${lp.y + 12}" text-anchor="middle" font-family="Nunito, sans-serif" font-size="11" font-weight="700" fill="#ffffff">${s.showVal !== false ? (s.val + (isDegree ? '°' : '%')) : '?'}</text>`;
+    
+    angle += sweep;
+  });
+
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+    ${paths}
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#ffffff" stroke-width="2"/>
+    ${labels}
+  </svg>`;
+}
+
+const questionsData = [
+  {
+    category: "Konsep Dasar",
+    question: "Satu lingkaran penuh pada diagram persen bernilai...",
+    options: ["50%", "100%", "180%", "360%"],
+    correct: 1,
+    explanation: "Diagram lingkaran dalam bentuk persen total keseluruhannya selalu <b>100%</b>."
+  },
+  {
+    category: "Konsep Dasar",
+    question: "Berapa total sudut untuk satu lingkaran penuh pada diagram derajat?",
+    options: ["90°", "100°", "180°", "360°"],
+    correct: 3,
+    explanation: "Satu lingkaran penuh memiliki total sudut sebesar <b>360°</b>."
+  },
+  {
+    category: "Konsep Dasar",
+    question: "Setengah bagian ($1/2$) dari diagram lingkaran sama dengan...",
+    options: ["25%", "50%", "75%", "100%"],
+    correct: 1,
+    explanation: "Setengah bagian lingkaran = $\\frac{1}{2} \\times 100\\% = 50\\%$."
+  },
+  {
+    category: "Konsep Dasar",
+    question: "Sudut siku-siku pada diagram lingkaran menunjukkan bagian sebesar...",
+    options: ["45°", "90°", "180°", "360°"],
+    correct: 1,
+    explanation: "Sudut siku-siku ($\n\\angle$) pada diagram bernilai <b>90°</b> (seperempat lingkaran)."
+  },
+  {
+    category: "Mencari Persen Hilang",
+    question: "Perhatikan diagram buah favorit berikut. Berapa persentase siswa yang menyukai <b>Jeruk</b>?",
+    chart: createPieChartSVG([{label:'Apel',val:50},{label:'Pisang',val:30},{label:'Jeruk',val:20,showVal:false}]),
+    options: ["10%", "15%", "20%", "25%"],
+    correct: 2,
+    explanation: "Total persen = $100\\%$. <br> Jeruk = $100\\% - (50\\% + 30\\%) = 100\\% - 80\\% = 20\\%$."
+  },
+  {
+    category: "Mencari Derajat Hilang",
+    question: "Diagram menunjukkan hobi siswa: Membaca 180°, Melukis 90°, dan sisanya Menari. Berapa besar sudut hobi <b>Menari</b>?",
+    chart: createPieChartSVG([{label:'Membaca',val:180},{label:'Melukis',val:90},{label:'Menari',val:90,showVal:false}], 220, true),
+    options: ["60°", "90°", "100°", "120°"],
+    correct: 1,
+    explanation: "Total sudut = $360^\\circ$. <br> Menari = $360^\\circ - (180^\\circ + 90^\\circ) = 360^\\circ - 270^\\circ = 90^\\circ$."
+  },
+  {
+    category: "Mencari Persen Hilang",
+    question: "Siswa berangkat ke sekolah: Sepeda 25%, Jalan Kaki 50%, dan Sisanya naik Bus. Berapa persen siswa yang naik <b>Bus</b>?",
+    options: ["15%", "20%", "25%", "30%"],
+    correct: 2,
+    explanation: "Bus = $100\\% - (25\\% + 50\\%) = 100\\% - 75\\% = 25\\%$."
+  },
+  {
+    category: "Mencari Derajat Hilang",
+    question: "Pilihan olahraga: Sepak Bola 180°, Bulu Tangkis 90°, dan Basket ?°. Berapa sudut untuk <b>Basket</b>?",
+    options: ["45°", "60°", "90°", "120°"],
+    correct: 2,
+    explanation: "Basket = $360^\\circ - (180^\\circ + 90^\\circ) = 360^\\circ - 270^\\circ = 90^\\circ$."
+  },
+  {
+    category: "Hitung Banyak Data",
+    question: "Jumlah siswa kelas 4 adalah 20 anak. Jika 50% siswa menyukai Sepak Bola, berapa anak yang menyukai Sepak Bola?",
+    options: ["5 anak", "10 anak", "12 anak", "15 anak"],
+    correct: 1,
+    explanation: "50% artinya setengah ($\n\\frac{1}{2}$) dari total anak. <br> Setengah dari 20 anak = <b>10 anak</b>."
+  },
+  {
+    category: "Hitung Banyak Data",
+    question: "Di perpustakaan ada 40 buku. Komik bernilai 25% (seperempat bagian). Berapa banyak buku komik?",
+    options: ["10 buku", "15 buku", "20 buku", "25 buku"],
+    correct: 0,
+    explanation: "25% sama dengan $\\frac{1}{4}$ bagian. <br> Seperempat dari 40 = $40 \\div 4 = 10$ buku."
+  },
+  {
+    category: "Hitung Banyak Data",
+    question: "Total siswa ada 30 anak. Sudut hobi Menari adalah 180° (setengah lingkaran). Berapa anak yang hobi menari?",
+    options: ["10 anak", "15 anak", "20 anak", "25 anak"],
+    correct: 1,
+    explanation: "180° adalah setengah lingkaran. <br> Setengah dari 30 anak = <b>15 anak</b>."
+  },
+  {
+    category: "Hitung Banyak Data",
+    question: "Sebanyak 50 buah di keranjang. Apel bernilai 20% dari total buah. Berapa jumlah buah apel?",
+    options: ["5 buah", "10 buah", "15 buah", "20 buah"],
+    correct: 1,
+    explanation: "20% dari 50 = $\\frac{20}{100} \\times 50 = \\frac{1}{5} \\times 50 = 10$ buah."
+  },
+  {
+    category: "Hitung Banyak Data",
+    question: "Ada 100 siswa SD. Yang menyukai es krim Cokelat adalah 30%. Berapa banyak siswa yang suka es krim Cokelat?",
+    options: ["20 siswa", "25 siswa", "30 siswa", "40 siswa"],
+    correct: 2,
+    explanation: "Karena totalnya 100 siswa, maka 30% dari 100 adalah <b>30 siswa</b>."
+  },
+  {
+    category: "Hitung Banyak Data",
+    question: "Total kelereng Budi adalah 24 butir. Kelereng Merah membentuk sudut 180°. Berapa butir kelereng merah?",
+    options: ["6 butir", "12 butir", "18 butir", "20 butir"],
+    correct: 1,
+    explanation: "180° = setengah dari total kelereng. <br> Setengah dari 24 = <b>12 butir</b>."
+  },
+  {
+    category: "Hitung Banyak Data",
+    question: "Peternak memiliki 60 ekor hewan. Ayam bernilai 50%. Berapa ekor jumlah ayam tersebut?",
+    options: ["20 ekor", "25 ekor", "30 ekor", "40 ekor"],
+    correct: 2,
+    explanation: "50% dari 60 ekor = setengah dari 60 = <b>30 ekor</b>."
+  },
+  {
+    category: "Hitung Banyak Data",
+    question: "Di kelas terdapat 40 siswa. Sektor Pramuka membentuk sudut 90° (seperempat bagian). Berapa siswa yang ikut Pramuka?",
+    options: ["10 siswa", "15 siswa", "20 siswa", "25 siswa"],
+    correct: 0,
+    explanation: "90° = $\\frac{1}{4}$ bagian dari lingkaran. <br> $\\frac{1}{4} \\times 40 = 10$ siswa."
+  },
+  {
+    category: "Soal Cerita Sederhana",
+    question: "Sebanyak 20 siswa ditanya hobi mereka: Cokelat 50% (10 anak) dan Vanila 50% (10 anak). Manakah pernyataan yang benar?",
+    options: [
+      "Jumlah peminat Cokelat lebih banyak",
+      "Jumlah peminat Vanila lebih banyak",
+      "Peminat Cokelat dan Vanila sama banyak",
+      "Tidak ada yang suka Vanila"
+    ],
+    correct: 2,
+    explanation: "Karena persentasenya sama-sama 50%, maka jumlah peminat Cokelat dan Vanila <b>sama banyak</b> (masing-masing 10 anak)."
+  },
+  {
+    category: "Soal Cerita Sederhana",
+    question: "Data 100 siswa: Musik 25%, Olahraga 50%, dan Menulis 25%. Hobi manakah yang <b>paling banyak</b> disukai?",
+    options: ["Musik", "Olahraga", "Menulis", "Semua sama"],
+    correct: 1,
+    explanation: "Olahraga memiliki persentase terbesar yaitu <b>50%</b>, sehingga paling banyak disukai."
+  },
+  {
+    category: "Mencari Total Data",
+    question: "Jika 50% (setengah) dari jumlah siswa kelas 4 adalah 15 anak, berapakah jumlah <b>seluruh</b> siswa kelas 4?",
+    options: ["20 anak", "25 anak", "30 anak", "40 anak"],
+    correct: 2,
+    explanation: "Jika setengahnya = 15 anak, maka seluruhnya = $15 \\times 2 = 30$ anak."
+  },
+  {
+    category: "Mencari Total Data",
+    question: "Seperempat bagian ($90^\\circ$) dari lemari buku berisi 10 buku cerita. Berapa jumlah <b>seluruh</b> buku di lemari?",
+    options: ["20 buku", "30 buku", "40 buku", "50 buku"],
+    correct: 2,
+    explanation: "Karena $\\frac{1}{4}$ bagian = 10 buku, maka total seluruhnya ($\n\\frac{4}{4}$) = $10 \\times 4 = 40$ buku."
+  },
+  {
+    category: "Analisis Pernyataan",
+    question: "Diagram hobi 40 siswa: Sepak Bola 50% (20 anak), Bulu Tangkis 25% (10 anak), dan Renang 25% (10 anak). Manakah pernyataan yang <b>SALAH</b>?",
+    options: [
+      "Peminat Sepak Bola paling banyak",
+      "Peminat Bulu Tangkis dan Renang sama banyak",
+      "Peminat Renang lebih banyak dari Sepak Bola",
+      "Setengah dari total siswa menyukai Sepak Bola"
+    ],
+    correct: 2,
+    explanation: "Pernyataan yang <b>SALAH</b> adalah 'Peminat Renang lebih banyak dari Sepak Bola', karena peminat Renang (10 anak) lebih sedikit dari Sepak Bola (20 anak)."
+  },
+  {
+    category: "Analisis Pernyataan",
+    question: "Diagram buah dalam derajat: Apel 180° (setengah lingkaran), Pisang 90°, dan Jeruk 90°. Pernyataan mana yang <b>BENAR</b>?",
+    options: [
+      "Buah Apel berjumlah setengah dari seluruh buah",
+      "Buah Pisang paling banyak jumlahnya",
+      "Buah Jeruk lebih banyak dari buah Apel",
+      "Buah Apel dan Pisang sama banyak"
+    ],
+    correct: 0,
+    explanation: "Sudut Apel adalah 180° yang berarti <b>setengah ($1/2$)</b> dari seluruh lingkaran."
+  },
+  {
+    category: "Analisis Pernyataan",
+    question: "Hasil nilai ulangan Matematika: Nilai 80 (50%), Nilai 90 (30%), Nilai 100 (20%). Pernyataan yang tepat adalah...",
+    options: [
+      "Siswa yang mendapat nilai 100 paling banyak",
+      "Paling banyak siswa mendapat nilai 80",
+      "Siswa yang mendapat nilai 90 lebih sedikit dari nilai 100",
+      "Semua nilai didapat oleh jumlah siswa yang sama"
+    ],
+    correct: 1,
+    explanation: "Nilai 80 memiliki persentase paling besar yaitu <b>50%</b> (setengah dari total siswa)."
+  },
+  {
+    category: "Analisis Pernyataan",
+    question: "Diagram cara ke sekolah: Sepeda 180°, Bus 90°, Jalan Kaki 90°. Manakah pernyataan yang <b>BENAR</b>?",
+    options: [
+      "Jumlah siswa naik Bus sama dengan yang Jalan Kaki",
+      "Siswa yang naik Sepeda paling sedikit",
+      "Siswa yang Jalan Kaki lebih banyak dari yang naik Sepeda",
+      "Siswa yang naik Bus paling banyak"
+    ],
+    correct: 0,
+    explanation: "Bus dan Jalan Kaki sama-sama memiliki sudut <b>90°</b>, sehingga jumlah siswanya sama banyak."
+  },
+  {
+    category: "Analisis Pernyataan",
+    question: "Data hewan peliharaan 20 anak: Kucing 50% (10 anak), Kelinci 25% (5 anak), Burung 25% (5 anak). Pernyataan yang <b>SALAH</b> adalah...",
+    options: [
+      "Kucing adalah hewan yang paling banyak dipelihara",
+      "Jumlah pemelihara Kelinci dan Burung adalah sama",
+      "Pemelihara Kelinci lebih banyak daripada Kucing",
+      "Setengah dari jumlah anak memelihara Kucing"
+    ],
+    correct: 2,
+    explanation: "Pernyataan yang <b>SALAH</b> adalah 'Pemelihara Kelinci lebih banyak daripada Kucing', karena pemelihara Kelinci (5 anak) lebih sedikit dari Kucing (10 anak)."
+  }
+];
+
+let currentQ = 0;
+let userAnswers = new Array(questionsData.length).fill(null);
+let quizMode = 'practice';
+
+function initQuiz() {
+  renderQuestion();
+  updateProgress();
+}
+
+function changeMode() {
+  quizMode = document.getElementById('modeSelect').value;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questionsData[currentQ];
+  
+  document.getElementById('questionNumber').textContent = `Soal ${currentQ + 1}`;
+  document.getElementById('questionCategory').textContent = q.category;
+  document.getElementById('questionText').innerHTML = q.question;
+  document.getElementById('qCounter').textContent = `Soal ${currentQ + 1} / ${questionsData.length}`;
+
+  // Render SVG Chart if available
+  const chartContainer = document.getElementById('chartContainer');
+  if (q.chart) {
+    chartContainer.style.display = 'flex';
+    chartContainer.innerHTML = q.chart;
+  } else {
+    chartContainer.style.display = 'none';
+    chartContainer.innerHTML = '';
+  }
+
+  // Render Options
+  const optionsGrid = document.getElementById('optionsGrid');
+  optionsGrid.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D'];
+
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    if (userAnswers[currentQ] === idx) btn.classList.add('selected');
+
+    if (quizMode === 'practice' && userAnswers[currentQ] !== null) {
+      if (idx === q.correct) btn.classList.add('correct');
+      else if (userAnswers[currentQ] === idx) btn.classList.add('wrong');
+    }
+
+    btn.innerHTML = `
+      <span class="option-prefix">${letters[idx]}</span>
+      <span>${opt}</span>
+    `;
+    btn.onclick = () => selectOption(idx);
+    optionsGrid.appendChild(btn);
+  });
+
+  // Render Explanation Box
+  const expBox = document.getElementById('explanationBox');
+  if (quizMode === 'practice' && userAnswers[currentQ] !== null) {
+    document.getElementById('explanationContent').innerHTML = q.explanation;
+    expBox.style.display = 'block';
+  } else {
+    expBox.style.display = 'none';
+  }
+
+  // Update Nav Buttons
+  document.getElementById('btnPrev').disabled = currentQ === 0;
+  const btnNext = document.getElementById('btnNext');
+  if (currentQ === questionsData.length - 1) {
+    btnNext.textContent = 'Selesai & Lihat Nilai ✔';
+    btnNext.className = 'btn btn-success';
+  } else {
+    btnNext.textContent = 'Selanjutnya ▶';
+    btnNext.className = 'btn btn-primary';
+  }
+
+  updateProgress();
+  
+  // Render Math Formulas safely
+  try {
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(document.getElementById('quizCard'), {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    }
+  } catch (err) {
+    console.warn("KaTeX render error:", err);
+  }
+}
+
+function selectOption(optIdx) {
+  userAnswers[currentQ] = optIdx;
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (currentQ < questionsData.length - 1) {
+    currentQ++;
+    renderQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function prevQuestion() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+  }
+}
+
+function updateProgress() {
+  const pct = ((currentQ + 1) / questionsData.length) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+function showResults() {
+  document.getElementById('quizCard').style.display = 'none';
+  document.getElementById('controlsBar').style.display = 'none';
+  const resultCard = document.getElementById('resultCard');
+  resultCard.style.display = 'block';
+
+  let correct = 0;
+  questionsData.forEach((q, idx) => {
+    if (userAnswers[idx] === q.correct) correct++;
+  });
+
+  const score = Math.round((correct / questionsData.length) * 100);
+  document.getElementById('finalScore').textContent = score;
+  document.getElementById('correctCount').textContent = correct;
+  document.getElementById('wrongCount').textContent = questionsData.length - correct;
+  document.getElementById('accuracyPct').textContent = score + '%';
+
+  const titleEl = document.getElementById('resultTitle');
+  const msgEl = document.getElementById('resultMsg');
+
+  if (score >= 90) {
+    titleEl.textContent = '🏆 HEBAT BANGET!';
+    msgEl.textContent = 'Kamu pintar sekali! Seluruh soal diagram lingkaran berhasil kamu jawab dengan baik.';
+  } else if (score >= 70) {
+    titleEl.textContent = '🌟 BAGUS SEKALI!';
+    msgEl.textContent = 'Pemahamanmu tentang persen dan derajat sudah cukup mantap. Tingkatkan terus ya!';
+  } else if (score >= 50) {
+    titleEl.textContent = '👍 CUKUP BAIK!';
+    msgEl.textContent = 'Kamu sudah mengerti dasar-dasarnya. Yuk pelajari lagi pembahasan soalnya!';
+  } else {
+    titleEl.textContent = '💪 TETAP SEMANGAT!';
+    msgEl.textContent = 'Jangan berkecil hati ya! Coba lihat pembahasan lalu ulangi lagi kuisnya.';
+  }
+}
+
+function restartQuiz() {
+  userAnswers.fill(null);
+  currentQ = 0;
+  document.getElementById('quizCard').style.display = 'block';
+  document.getElementById('controlsBar').style.display = 'flex';
+  document.getElementById('resultCard').style.display = 'none';
+  renderQuestion();
+}
+
+function reviewQuiz() {
+  quizMode = 'practice';
+  document.getElementById('modeSelect').value = 'practice';
+  restartQuiz();
+}
+
+window.onload = function() {
+  initQuiz();
+};
+</script>
+</body>
+</html>
